@@ -6,6 +6,8 @@
 	}
 }(this, function ($, whenScroll) {
 
+	var $document = $(document);
+
 	$('[type="text/x-whtevr"]').each(function () {
 		var $this = $(this);
 
@@ -13,13 +15,21 @@
 		var $newElement = $('<div />');
 		$newElement.insertAfter($this);
 
-		whenScroll(['within 300px of', $newElement[0]], function () {
+		function loadNow() {
 			$newElement.html($this.html());
 
 			$this
 				.trigger('whtevr-loaded', [ $newElement ])
 				.remove();
-		});
+		}
+
+		if ($this.data('load-after')) {
+			$document.ready(function () {
+				setTimeout(loadNow, $this.data('load-after'));
+			});
+		} else {
+			whenScroll(['within 300px of', $newElement[0]], loadNow);
+		}
 	});
 
 	// Ensure visible elements are loaded immediately

@@ -28,6 +28,13 @@ Put everything in a script tag with the type "text/x-whtevr":
 </script>
 ```
 
+It will load the contents of the script tag when it is 300px away from the
+bottom of the screen.
+
+You can also use it to defer the loading of stuff until after the page has
+loaded, using the `data-load-after` attribute. It doesn't matter where it is:
+if you specify this attribute, it will be loaded after that amount of time.
+
 An event will be fired when it is loaded:
 
 ```js
