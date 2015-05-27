@@ -1,4 +1,4 @@
-# whtevr
+# whtevr [![Build Status](https://travis-ci.org/callumacrae/whtevr.svg)](https://travis-ci.org/callumacrae/whtevr)
 
 > The lazy loading library that just doesn't care.
 
@@ -8,9 +8,6 @@ stuff like videos in it, too. Whatever. I don't care. Neither does this
 library.
 
 It relies on jQuery and another library of mine, [when-scroll].
-
-The build is probably failing right now, it seems to be [an issue with
-mocha-phantomjs][mocha-phantomjs issue]. Here it is: [![Build Status](https://travis-ci.org/callumacrae/whtevr.svg)](https://travis-ci.org/callumacrae/whtevr)
 
 ## Installation
 
