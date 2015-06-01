@@ -6,6 +6,12 @@ describe('whtevr', function () {
 		$('.deletewhendone').remove();
 	});
 
+	describe('non-lazy loading', function () {
+		it('should load immediately if on screen', function () {
+			$('#test3').length.should.equal(1);
+		});
+	});
+
 	describe('lazy load on delay', function () {
 		it('should not load stuff early', function () {
 			$('#test2').length.should.equal(0);

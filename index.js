@@ -28,11 +28,7 @@
 				setTimeout(loadNow, $this.data('load-after'));
 			});
 		} else {
-			whenScroll(['within 300px of', $newElement[0]], loadNow);
+			whenScroll(['within 300px of', $newElement[0]], loadNow, true);
 		}
 	});
-
-	// Ensure visible elements are loaded immediately
-	$(window).trigger('scroll');
-
 }));
