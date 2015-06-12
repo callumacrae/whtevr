@@ -24,7 +24,7 @@
   "homepage": "https://github.com/callumacrae/whtevr",
   "dependencies": {
     "jquery": "^1.11.2",
-    "when-scroll": "^0.2.1"
+    "when-scroll": "^0.2.2"
   },
   "devDependencies": {
     "gulp": "^3.8.11",

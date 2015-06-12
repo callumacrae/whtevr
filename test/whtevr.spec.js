@@ -61,4 +61,39 @@ describe('whtevr', function () {
 			$element.is(':visible').should.be.True;
 		});
 	});
+
+	describe('noscript', function () {
+		var eventFired = false;
+		var $element;
+
+		before(function () {
+			$('.js-whtevr').on('whtevr-loaded', function (e, $el) {
+				eventFired = true;
+				$element = $el;
+			});
+		});
+
+		it('should not load stuff early', function () {
+			$('#test4').length.should.equal(0);
+		});
+
+		it('should load stuff', function (done) {
+			setTimeout(function () {
+				$(window).scrollTop(8700);
+			});
+
+			var interval = setInterval(function () {
+				if ($('#test4').length === 1) {
+					done();
+					clearInterval(interval);
+				}
+			}, 10);
+		});
+
+		it('should have fired an event', function () {
+			eventFired.should.be.True;
+			$element.length.should.equal(1);
+			$element.is(':visible').should.be.True;
+		});
+	});
 });

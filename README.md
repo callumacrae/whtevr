@@ -17,12 +17,12 @@ $ npm install --save whtevr
 
 ## Usage
 
-Put everything in a script tag with the type "text/x-whtevr":
+Put everything in a noscript tag with the class "js-whtevr":
 
 ```html
-<script type="text/x-whtevr">
+<noscript class="js-whtevr">
 	<img src="..." srcset="...">
-</script>
+</noscript>
 ```
 
 It will load the contents of the script tag when it is 300px away from the
@@ -35,12 +35,44 @@ if you specify this attribute, it will be loaded after that amount of time.
 An event will be fired when it is loaded:
 
 ```js
-$('[type="text/x-whtevr"]').on('whtevr-loaded', function (e, $el) {
+$('.js-whtevr').on('whtevr-loaded', function (e, $el) {
 	picturefill({
 		elements: $el.toArray()
 	});
 });
 ```
+
+### legacy
+
+Prior to 0.2 (and this still works), you had to use a script tag:
+
+> Put everything in a script tag with the type "text/x-whtevr":
+>
+> ```html
+> <script type="text/x-whtevr">
+> 	<img src="..." srcset="...">
+> </script>
+> ```
+>
+> It will load the contents of the script tag when it is 300px away from the
+> bottom of the screen.
+>
+> You can also use it to defer the loading of stuff until after the page has
+> loaded, using the `data-load-after` attribute. It doesn't matter where it is:
+> if you specify this attribute, it will be loaded after that amount of time.
+>
+> An event will be fired when it is loaded:
+>
+> ```js
+> $('[type="text/x-whtevr"]').on('whtevr-loaded', function (e, $el) {
+> 	picturefill({
+> 		elements: $el.toArray()
+> 	});
+> });
+> ```
+
+As of 0.2, you can use noscript tags to lazy load stuff. It works without
+JavaScript, and it means your editor will syntax highlight the contents.
 
 ## License
 

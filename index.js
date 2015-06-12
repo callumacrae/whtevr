@@ -8,7 +8,7 @@
 
 	var $document = $(document);
 
-	$('[type="text/x-whtevr"]').each(function () {
+	$('[type="text/x-whtevr"], .js-whtevr').each(function () {
 		var $this = $(this);
 
 		// We create this now because script tags don't have a bounding rect
@@ -16,7 +16,8 @@
 		$newElement.insertAfter($this);
 
 		function loadNow() {
-			$newElement.html($this.html());
+			var isNoscript = ($this.prop('tagName') === 'NOSCRIPT');
+			$newElement.html(isNoscript ? $this.text() : $this.html());
 
 			$this
 				.trigger('whtevr-loaded', [ $newElement ])
