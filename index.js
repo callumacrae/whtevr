@@ -6,7 +6,7 @@
 	}
 }(this, function ($, whenScroll) {
 
-	var $document = $(document);
+	var $window = $(window);
 
 	$('[type="text/x-whtevr"], .js-whtevr').each(function () {
 		var $this = $(this);
@@ -25,7 +25,7 @@
 		}
 
 		if ($this.data('load-after')) {
-			$document.ready(function () {
+			$window.on('load', function () {
 				setTimeout(loadNow, $this.data('load-after'));
 			});
 		} else {

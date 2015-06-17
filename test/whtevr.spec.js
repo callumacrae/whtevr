@@ -22,7 +22,7 @@ describe('whtevr', function () {
 				setTimeout(function () {
 					$('#test2').length.should.equal(1);
 					done();
-				}, 11);
+				}, 150);
 			});
 		});
 	});
