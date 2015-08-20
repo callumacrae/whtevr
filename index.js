@@ -15,13 +15,10 @@
 		var $newElement = $('<div />');
 		$newElement.insertAfter($this);
 
-		function loadNow() {
-			var isNoscript = ($this.prop('tagName') === 'NOSCRIPT');
-			$newElement.html(isNoscript ? $this.text() : $this.html());
+		$this.data('whtevrNewElement', $newElement);
 
-			$this
-				.trigger('whtevr-loaded', [ $newElement ])
-				.remove();
+		function loadNow() {
+			load($this);
 		}
 
 		if ($this.data('load-after')) {
@@ -32,4 +29,21 @@
 			whenScroll(['within 300px of', $newElement[0]], loadNow, true);
 		}
 	});
+
+	$.fn.whtevrLoad = function () {
+		this.each(function () {
+			load($(this));
+		});
+	};
+
+	function load($element) {
+		var $newElement = $element.data('whtevrNewElement');
+
+		var isNoscript = ($this.prop('tagName') === 'NOSCRIPT');
+		$newElement.html(isNoscript ? $element.text() : $element.html());
+
+		$element
+			.trigger('whtevr-loaded', [ $newElement ])
+			.remove();
+	}
 }));
