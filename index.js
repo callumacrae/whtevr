@@ -26,12 +26,12 @@
       $images.load(function () {
         ++imageTicker;
         if (imageCount === imageTicker) {
-          triggerFinished($scriptTag, $tmpElement);
+          $scriptTag
+            .triger('whtevr-images-loaded', [$tmpElement]);
         }
       });
-    } else {
-      triggerFinished($scriptTag, $tmpElement);
     }
+    triggerFinished($scriptTag, $tmpElement);
   }
 
   $('[type="text/x-whtevr"], .js-whtevr').each(function () {
