@@ -37,8 +37,7 @@
   $('[type="text/x-whtevr"], .js-whtevr').each(function () {
     var $this = $(this);
     // We create this now because script tags don't have a bounding rect
-    var $newElement = $('<div />')
-      .hide();
+    var $newElement = $('<div />');
     $newElement.insertAfter($this);
 
     if ($this.data('load-after')) {
