@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1" name="viewport">
+  <title>whtevr-event index</title>
+
+</head>
+<body>
+
+<div class="button">Click for test 1</div>
+<script type="text/x-whtevr-fn" class="deletewhendone" data-evt="click" data-selector=".button">
+  <p id="test" class="deletewhendone">this is a test 1</p>
+</script>
+
+<div class="button--big">Click for test 2</div>
+<script type="text/x-whtevr-fn" class="deletewhendone" data-evt="click" data-selector=".button--big">
+  <p id="test2" class="deletewhendone">this is a test 2</p>
+</script>
+
+<div class="button--wide">Click for test 3 (no evt)</div>
+<script type="text/x-whtevr" data-evt="" data-selector=".button--wide" class="deletewhendone">
+  <p id="test3" class="deletewhendone">another test 3</p>
+</script>
+
+<div class="button--huge">Click for test 4 (no selector, shouldn't work)</div>
+<noscript class="js-whtevr" class="deletewhendone" data-evt="click" data-selector="">
+  <p id="test4" class="deletewhendone">noscript test 4</p>
+</noscript>
+
+<button id="button-id">Click for test 5</button>
+<noscript class="js-whtevr" class="deletewhendone" data-evt="click" data-selector="#button-id">
+  <div class="test__content">
+    <p id="test5" class="deletewhendone">noscript test 5</p>
+    <img src="http://41.media.tumblr.com/015a96c40e2f80a56dacfbcbd3b197f0/tumblr_n1gayrieM81sdyj9lo1_1280.jpg" alt="" />
+  </div>
+</noscript>
+
+<div style="height: 2000px" class="deletewhendone"></div>
+<script type="text/x-whtevr" class="deletewhendone">
+  <p id="test7" class="deletewhendone">this is a test</p>
+</script>
+
+<div style="height: 5000px" class="deletewhendone"></div>
+<script type="text/x-whtevr" data-load-after="10" class="deletewhendone">
+  <p id="test8" class="deletewhendone">another test</p>
+</script>
+
+<div style="height: 2000px" class="deletewhendone"></div>
+<noscript class="js-whtevr" class="deletewhendone">
+  <p id="test9" class="deletewhendone">noscript test</p>
+</noscript>
+
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/when-scroll/dist/when-scroll.min.js"></script>
+<script src="index.js"></script>
+
+</body>
+</html>
