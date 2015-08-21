@@ -27,7 +27,7 @@
         ++imageTicker;
         if (imageCount === imageTicker) {
           $scriptTag
-            .triger('whtevr-images-loaded', [$tmpElement]);
+            .trigger('whtevr-images-loaded', [$tmpElement]);
         }
       });
     }
