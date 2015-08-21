@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1" name="viewport">
+  <title>whtevr-event index</title>
+
+</head>
+<body>
+
+<script type="text/x-whtevr" class="deletewhendone">
+  <p id="test3" class="deletewhendone">load immediately</p>
+</script>
+
+<div style="height: 2000px" class="deletewhendone"></div>
+<script type="text/x-whtevr" class="deletewhendone">
+  <p id="test" class="deletewhendone">this is a test</p>
+</script>
+
+<div style="height: 5000px" class="deletewhendone"></div>
+<script type="text/x-whtevr" data-load-after="10" class="deletewhendone">
+  <p id="test2" class="deletewhendone">another test</p>
+</script>
+
+<div style="height: 2000px" class="deletewhendone"></div>
+<noscript class="js-whtevr" class="deletewhendone">
+  <p id="test4" class="deletewhendone">noscript test</p>
+</noscript>
+
+<div class="button">Click for test 1</div>
+<script type="text/x-whtevr-fn" class="deletewhendone" data-evt="click" data-selector=".button">
+  <p id="test" class="deletewhendone">this is a test 1</p>
+</script>
+
+<div class="button--big">Click for test 2</div>
+<script type="text/x-whtevr-fn" class="deletewhendone" data-evt="click" data-selector=".button--big">
+  <p id="test2" class="deletewhendone">this is a test 2</p>
+</script>
+
+
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/when-scroll/dist/when-scroll.min.js"></script>
+<script src="index.js"></script>
+
+</body>
+</html>
