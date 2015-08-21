@@ -37,9 +37,7 @@ describe('whtevr', function () {
         eventFired = true;
         $element = $el;
       });
-      $('.button--test-fn-1').on('click', function () {
-        $('[type="text/x-whtevr-experiment"]').whtevrLoad();
-      });
+      $('[type="text/x-whtevr-experiment"]').whtevrLoad();
     });
 
     it('should not load stuff early', function () {
@@ -59,19 +57,14 @@ describe('whtevr', function () {
       }, 10);
     });
 
-    it('should show content on click', function (done) {
-      $('.button--test-fn-1').trigger('click');
-      setTimeout(function () {
-        if ($('#test-fn-1').length === 1) {
-          done();
-        }
-      });
+    it('should show content on event', function () {
+      $('#test-fn-1').length.should.equal(1);
     });
 
     it('should have fired an event', function () {
       eventFired.should.be.True;
       $element.length.should.equal(1);
-      // Commenting this out because I'm removing the wrapping <div> when
+      //Commenting this out because I'm removing the wrapping <div> when
       //$element.is(':visible').should.be.True;
     });
   });
