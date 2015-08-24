@@ -11,8 +11,8 @@
   /**
    * Fire a custom event on $scriptTag, to say that the noscript content has
    * been switched out.
-   * @param  {HTMLElement} $scriptTag  The <noscript>/<script> tag which houses the hidden content
-   * @param  {HTMLElement} $tmpElement The <div> tag which temporarily houses the loaded content
+   * @param  {jQuery} $scriptTag  The <noscript>/<script> tag which houses the hidden content
+   * @param  {jQuery} $tmpElement The <div> tag which temporarily houses the loaded content
    * @return {null}
    */
   function triggerFinished($scriptTag, $tmpElement) {
@@ -23,8 +23,8 @@
   /**
    * Removes the <script>/<noscript> tag from the DOM, and unwraps the loaded
    * content from the temporary <div> element.
-   * @param  {HTMLElement} $scriptTag  The <noscript>/<script> tag which houses the hidden content
-   * @param  {HTMLElement} $tmpElement The <div> tag which temporarily houses the loaded content
+   * @param  {jQuery} $scriptTag  The <noscript>/<script> tag which houses the hidden content
+   * @param  {jQuery} $tmpElement The <div> tag which temporarily houses the loaded content
    * @return {null}
    */
   function removeScriptTag($scriptTag, $tmpElement) {
@@ -37,9 +37,9 @@
    * Takes the content within the <noscript>/<script> tag, and outputs it to a
    * temporary <div> element which is created to house the content for
    * scroll-based calculations. Also checks for images, and fires an event when
-   * all images have been loaded.§
-   * @param  {HTMLElement} $scriptTag  The <noscript>/<script> tag which houses the hidden content
-   * @param  {HTLElement} $tmpElement The <div> tag which temporarily houses the loaded content
+   * all images have been loaded.
+   * @param  {jQuery} $scriptTag  The <noscript>/<script> tag which houses the hidden content
+   * @param  {jQuery} $tmpElement The <div> tag which temporarily houses the loaded content
    * @return {null}
    */
   function loadNow($scriptTag, $tmpElement) {
@@ -91,13 +91,13 @@
 
   /**
    * Enables calling .whtevrLoad() on an element to load the content within that
-   * tag. The tag should be either a `noscript` or `script` tag.
+   * tag. The tag should be either a <noscript> or <script> tag.
    * @return {function} Loop through each of the matched elements
    */
   $.fn.whtevrLoad = function () {
     /**
      * Sets up the plugin by running the loadNow function, after creating an
-     * empty `div` tag to house the content temporarily.
+     * empty <div> tag to house the content temporarily.
      * @param  {int} idx Counter
      * @param  {HTMLElement} elem  The individual element that matches the selector given to the plugin.
      * @return {null}
