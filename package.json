@@ -1,6 +1,6 @@
 {
   "name": "whtevr",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A lazy load library that just doesn't care",
   "main": "index.js",
   "scripts": {
