@@ -72,11 +72,24 @@ describe('whtevr', function () {
   describe('noscript', function () {
     var eventFired = false;
     var $element;
+    var imageHasLoaded = false;
+    var brokenImageHasLoaded = false;
 
     before(function () {
       $('.js-whtevr').on('whtevr-loaded', function (e, $el) {
         eventFired = true;
         $element = $el;
+      });
+
+      $('.js-image').whtevrLoad();
+
+      $('.js-image').on('whtevr-images-loaded', function (e, $el) {
+        imageHasLoaded = true;
+
+      });
+
+      $('.js-broken-image').on('whtevr-images-loaded', function (e, $el) {
+        brokenImageHasLoaded = true;
       });
     });
 
@@ -95,6 +108,23 @@ describe('whtevr', function () {
           clearInterval(interval);
         }
       }, 10);
+    });
+
+    it('should have loaded an image', function (done) {
+      var interval = setInterval(function () {
+        if (imageHasLoaded === true) {
+          done();
+          clearInterval(interval);
+        }
+      }, 10);
+    });
+
+    it('should not load an unbroken image', function (done) {
+      setTimeout(function () {
+        if (brokenImageHasLoaded === false) {
+          done();
+        }
+      }, 250);
     });
 
     it('should have fired an event', function () {
