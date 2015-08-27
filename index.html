@@ -7,6 +7,10 @@
 
 </head>
 <body>
+<noscript class="js-whtevr blahh">
+  <p id="blahh-test">This should load immediately</p>
+</noscript>
+<div style="height: 3000px" class="deletewhendone"></div>
 <button class="button--test-fn-1">Show #test-fn-1</button>
 <script type="text/x-whtevr" class="deletewhendone">
   <p id="test3" class="deletewhendone">load immediately</p>
@@ -57,6 +61,10 @@
 
     $('.js-whtevr-evt').whtevrLoad();
 
+  });
+
+  $(document).on('whtevr-loaded', '.blahh', function () {
+    console.log('blah working');
   });
 
   $(document).on('whtevr-loaded', '.js-test', function () {

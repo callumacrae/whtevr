@@ -2,6 +2,11 @@
 'use strict';
 
 describe('whtevr', function () {
+  var immediateLoadEvent = false;
+  $('.js-load-immediately').on('whtevr-loaded', function () {
+    immediateLoadEvent = true;
+  });
+
   after(function () {
     $(window).scrollTop(0);
     $('.deletewhendone').remove();
@@ -10,6 +15,10 @@ describe('whtevr', function () {
   describe('non-lazy loading', function () {
     it('should load immediately if on screen', function () {
       $('#test3').length.should.equal(1);
+    });
+
+    it('should fire an event immediately if on screen', function () {
+      immediateLoadEvent.should.equal(true);
     });
   });
 

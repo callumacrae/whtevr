@@ -10,7 +10,7 @@
 
 <div id="mocha"></div>
 
-<script type="text/x-whtevr" class="deletewhendone">
+<script type="text/x-whtevr" class="deletewhendone js-load-immediately">
 	<p id="test3" class="deletewhendone">load immediately</p>
 </script>
 
@@ -41,6 +41,7 @@
 	<img src="https://broken.image/test.gif" alt="" class="deletewhendone broken-image" style="display: none">
 </noscript>
 
+
 <script src="../node_modules/jquery/dist/jquery.js"></script>
 <script src="../node_modules/when-scroll/dist/when-scroll.min.js"></script>
 <script src="../index.js"></script>
@@ -57,6 +58,9 @@
 <script>
 	if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
 	else { mocha.run(); }
+</script>
+
+<script>
 </script>
 
 </body>

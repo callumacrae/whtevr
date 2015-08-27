@@ -43,6 +43,8 @@
    * @return {null}
    */
   function loadNow($scriptTag, $tmpElement) {
+    // var $scriptTag = this.$scriptTag;
+    // var $tmpElement = this.$tmpElement;
     var isNoscript = ($scriptTag.prop('tagName') === 'NOSCRIPT');
     var $content = isNoscript ? $scriptTag.text() : $scriptTag.html();
     $tmpElement.html($.parseHTML($content));
@@ -54,12 +56,14 @@
         ++imageTicker;
         if (imageCount === imageTicker) {
           $scriptTag
-            .trigger('whtevr-images-loaded', [$tmpElement])
+            .trigger('whtevr-images-loaded', [$tmpElement]);
           removeScriptTag($scriptTag, $tmpElement);
         }
       });
     }
     triggerFinished($scriptTag, $tmpElement);
+
+
     // We add an additional parameter to see whether we should remove the DOM
     // element in the triggerFinished function, as we don't want to remove the
     // element if we have images to load, as the `whtevr-images-loaded` trigger
@@ -83,9 +87,15 @@
         }, $this.data('load-after'));
       });
     } else {
-      whenScroll(['within 300px of', $newElement[0]], function () {
-        loadNow($this, $newElement);
-      }, true);
+      // This is essential for firing the event to a DOM immediately, as set by
+      // the mysterious undocumented third parameter. Because the DOM wasn't
+      // loaded, we could never attach an event to it, and it would fail.
+      $(document).on('ready', function () {
+        whenScroll(['within 300px of', $newElement[0]], function () {
+          loadNow($this, $newElement);
+        }, true);
+      });
+
     }
   });
 
