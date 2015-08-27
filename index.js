@@ -85,14 +85,9 @@
         }, $this.data('load-after'));
       });
     } else {
-      // This is essential for firing the event to a DOM immediately, as set by
-      // the mysterious undocumented third parameter. Because the DOM wasn't
-      // loaded, we could never attach an event to it, and it would fail.
-      $(document).on('ready', function () {
-        whenScroll(['within 300px of', $newElement[0]], function () {
-          loadNow($this, $newElement);
-        }, true);
-      });
+      whenScroll(['within 300px of', $newElement[0]], function () {
+        loadNow($this, $newElement);
+      }, true);
 
     }
   });
