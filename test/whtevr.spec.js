@@ -14,11 +14,16 @@ describe('whtevr', function () {
 
   describe('non-lazy loading', function () {
     it('should load immediately if on screen', function () {
-      $('#test3').length.should.equal(1);
+      $(document).on('ready', function () {
+        $('#test3').length.should.equal(1);
+      });
+
     });
 
     it('should fire an event immediately if on screen', function () {
-      immediateLoadEvent.should.equal(true);
+      $(document).on('ready', function () {
+        immediateLoadEvent.should.equal(true);
+      });
     });
   });
 
