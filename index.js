@@ -62,8 +62,6 @@
       });
     }
     triggerFinished($scriptTag, $tmpElement);
-
-
     // We add an additional parameter to see whether we should remove the DOM
     // element in the triggerFinished function, as we don't want to remove the
     // element if we have images to load, as the `whtevr-images-loaded` trigger
