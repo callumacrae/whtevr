@@ -43,8 +43,6 @@
    * @return {null}
    */
   function loadNow($scriptTag, $tmpElement) {
-    // var $scriptTag = this.$scriptTag;
-    // var $tmpElement = this.$tmpElement;
     var isNoscript = ($scriptTag.prop('tagName') === 'NOSCRIPT');
     var $content = isNoscript ? $scriptTag.text() : $scriptTag.html();
     $tmpElement.html($.parseHTML($content));
