@@ -7,14 +7,31 @@
 
 </head>
 <body>
-
+<noscript class="js-whtevr blahh">
+  <p id="blahh-test">This should load immediately</p>
+</noscript>
+<div style="height: 3000px" class="deletewhendone"></div>
+<button class="button--test-fn-1">Show #test-fn-1</button>
 <script type="text/x-whtevr" class="deletewhendone">
   <p id="test3" class="deletewhendone">load immediately</p>
 </script>
 
 <div style="height: 2000px" class="deletewhendone"></div>
-<script type="text/x-whtevr" class="deletewhendone">
+<p>
+
+</p>
+<noscript class="js-whtevr-evt deletewhendone">
+  <img src="http://40.media.tumblr.com/15e7597409b840cc20bd4de23f23e19a/tumblr_n4e0j6iBHs1sdyj9lo1_1280.jpg" alt="" />
+  <img src="http://36.media.tumblr.com/b9e26d4fee1a5572ae92f4cf56e1fdbe/tumblr_n4e0mi1mrk1sdyj9lo1_1280.jpg" alt="" />
+  <img src="http://41.media.tumblr.com/ffe43edae52dc2a346a16ac829a2e9ed/tumblr_n4e0pe0wTu1sdyj9lo1_1280.jpg" alt="" />
+  <p id="test-fn-1" class="deletewhendone">This will show on click</p>
+</noscript>
+<div style="height: 2000px" class="deletewhendone"></div>
+<script type="text/x-whtevr" class="deletewhendone js-test">
   <p id="test" class="deletewhendone">this is a test</p>
+  <img src="http://40.media.tumblr.com/15e7597409b840cc20bd4de23f23e19a/tumblr_n4e0j6iBHs1sdyj9lo1_1280.jpg" alt="" />
+  <img src="http://36.media.tumblr.com/b9e26d4fee1a5572ae92f4cf56e1fdbe/tumblr_n4e0mi1mrk1sdyj9lo1_1280.jpg" alt="" />
+  <img src="http://41.media.tumblr.com/ffe43edae52dc2a346a16ac829a2e9ed/tumblr_n4e0pe0wTu1sdyj9lo1_1280.jpg" alt="" />
 </script>
 
 <div style="height: 5000px" class="deletewhendone"></div>
@@ -27,13 +44,11 @@
   <p id="test4" class="deletewhendone">noscript test</p>
 </noscript>
 
-<div class="button">Click for test 1</div>
-<script type="text/x-whtevr-fn" class="deletewhendone" data-evt="click" data-selector=".button">
+<script type="text/x-whtevr" class="deletewhendone">
   <p id="test" class="deletewhendone">this is a test 1</p>
 </script>
 
-<div class="button--big">Click for test 2</div>
-<script type="text/x-whtevr-fn" class="deletewhendone" data-evt="click" data-selector=".button--big">
+<script type="text/x-whtevr" class="deletewhendone">
   <p id="test2" class="deletewhendone">this is a test 2</p>
 </script>
 
@@ -41,6 +56,33 @@
 <script src="node_modules/jquery/dist/jquery.js"></script>
 <script src="node_modules/when-scroll/dist/when-scroll.min.js"></script>
 <script src="index.js"></script>
+<script>
+  $('.button--test-fn-1').on('click', function () {
 
+    $('.js-whtevr-evt').whtevrLoad();
+
+  });
+
+  $(document).on('whtevr-loaded', '.blahh', function () {
+    console.log('blah working');
+  });
+
+  $(document).on('whtevr-loaded', '.js-test', function () {
+    console.log('test');
+  });
+
+  $(document).on('whtevr-images-loaded', '.js-test', function () {
+    console.log('test images');
+  });
+
+  $(document).on('whtevr-loaded', '.js-whtevr-evt', function () {
+    console.log('test 2');
+  });
+
+  $(document).on('whtevr-images-loaded', '.js-whtevr-evt', function () {
+    console.log('test images 2');
+  });
+
+</script>
 </body>
 </html>

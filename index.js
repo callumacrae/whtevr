@@ -54,7 +54,7 @@
         ++imageTicker;
         if (imageCount === imageTicker) {
           $scriptTag
-            .trigger('whtevr-images-loaded', [$tmpElement])
+            .trigger('whtevr-images-loaded', [$tmpElement]);
           removeScriptTag($scriptTag, $tmpElement);
         }
       });
@@ -86,6 +86,7 @@
       whenScroll(['within 300px of', $newElement[0]], function () {
         loadNow($this, $newElement);
       }, true);
+
     }
   });
 
