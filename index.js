@@ -8,7 +8,7 @@ import whenScroll from 'when-scroll';
  * @param {jQuery} $scriptTag The whtevr element housing the hidden content
  * @param {jQuery} $placeholder The <div> tag created for the bounding rect
  */
-function removeScriptTag($scriptTag, $placeholder) {
+function cleanUp($scriptTag, $placeholder) {
 	$scriptTag.remove();
 	$placeholder.children().unwrap();
 }
@@ -45,10 +45,10 @@ function loadNow($scriptTag) {
 
 		$.when(...promises).then(function () {
 			$scriptTag.trigger('whtevr-images-loaded', [ $placeholder ]);
-			removeScriptTag($scriptTag, $placeholder);
+			cleanUp($scriptTag, $placeholder);
 		});
 	} else {
-		removeScriptTag($scriptTag, $placeholder);
+		cleanUp($scriptTag, $placeholder);
 	}
 }
 
