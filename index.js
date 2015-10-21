@@ -30,28 +30,26 @@ function loadNow($scriptTag) {
 	var $content = isNoscript ? $scriptTag.text() : $scriptTag.html();
 	$placeholder.html($.parseHTML($content));
 
-	// @todo: Isn't this just the load event?
-	var $images = $placeholder.find('img');
-	var imageCount = $images.length;
-	var imageTicker = 0;
-	if (imageCount > 0) {
-		$images.load(function () {
-			++imageTicker;
-			if (imageTicker === imageCount) {
-				$scriptTag.trigger('whtevr-images-loaded', [$placeholder]);
-				removeScriptTag($scriptTag, $placeholder);
-			}
-		});
-	}
-
 	$scriptTag.trigger('whtevr-loaded', [ $placeholder ]);
 
 	// We add an additional parameter to see whether we should remove the DOM
 	// element in the triggerFinished function, as we don't want to remove the
 	// element if we have images to load, as the `whtevr-images-loaded` trigger
 	// may not have an element to fire on if it's been removed here.
-	var shouldRemove = imageCount === 0;
-	if (shouldRemove) {
+	var $images = $placeholder.find('img');
+	if ($images.length > 0) {
+		// @todo: Isn't this just the load event?
+		var promises = $images.map(function (i, img) {
+			var promise = $.Deferred();
+			$(img).on('load', () => promise.resolve());
+			return promise;
+		});
+
+		$.when(promises).then(function () {
+			$scriptTag.trigger('whtevr-images-loaded', [$placeholder]);
+			removeScriptTag($scriptTag, $placeholder);
+		});
+	} else {
 		removeScriptTag($scriptTag, $placeholder);
 	}
 }
