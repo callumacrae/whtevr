@@ -37,11 +37,12 @@
 
     // @todo: Isn't this just the load event?
     var $images = $placeholder.find('img');
+    var imageCount = $images.length;
     var imageTicker = 0;
     if (imageCount > 0) {
       $images.load(function () {
         ++imageTicker;
-        if (imageTicker === $images.length) {
+        if (imageTicker === imageCount) {
           $scriptTag.trigger('whtevr-images-loaded', [$placeholder]);
           removeScriptTag($scriptTag, $placeholder);
         }
