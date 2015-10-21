@@ -4,7 +4,9 @@
   "description": "A lazy load library that just doesn't care",
   "main": "index.js",
   "scripts": {
-    "test": "mocha-phantomjs test/test.html"
+    "test": "mocha-phantomjs test/test.html",
+    "build": "babel -o build/index.js -m umd -s true index.js",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -27,9 +29,15 @@
     "when-scroll": "^0.2.4"
   },
   "devDependencies": {
+    "babel": "^5.8.27",
     "mocha": "^2.2.1",
     "mocha-phantomjs": "^3.6.0",
     "phantomjs": "1.9.7-15",
     "should": "^5.2.0"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
   }
 }
