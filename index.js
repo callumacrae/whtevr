@@ -41,9 +41,9 @@ function loadNow($scriptTag) {
 			const promise = $.Deferred();
 			$(img).on('load', () => promise.resolve());
 			return promise;
-		});
+		}).toArray();
 
-		$.when(promises).then(function () {
+		$.when(...promises).then(function () {
 			$scriptTag.trigger('whtevr-images-loaded', [ $placeholder ]);
 			removeScriptTag($scriptTag, $placeholder);
 		});
@@ -72,8 +72,7 @@ $('[type="text/x-whtevr"], .js-whtevr').each(function () {
 });
 
 /**
- * Enables calling .whtevrLoad() on an element to load the content within that
- * tag. The tag should be either a <noscript> or <script> tag.
+ * jQuery plugin to immediately load the contents of a whtevr element.
  *
  * @return {jQuery} Self.
  */

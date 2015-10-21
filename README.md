@@ -44,6 +44,23 @@ $('.js-whtevr').on('whtevr-loaded', function (e, $el) {
 });
 ```
 
+An additional event will be fired when the images contained are all loaded:
+
+```js
+$('.js-gallery').on('whtevr-images-loaded', function (e, $el) {
+  initGallery($el);
+});
+```
+
+### jQuery plugin
+
+The library also includes a jQuery plugin that you can use to immediately
+load the contents of a whtevr element:
+
+```js
+$('.js-whtevr').whtevrLoad();
+```
+
 ### legacy
 
 Prior to 0.2 (and this still works), you had to use a script tag:
