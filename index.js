@@ -44,7 +44,7 @@ function loadNow($scriptTag) {
 		});
 
 		$.when(promises).then(function () {
-			$scriptTag.trigger('whtevr-images-loaded', [$placeholder]);
+			$scriptTag.trigger('whtevr-images-loaded', [ $placeholder ]);
 			removeScriptTag($scriptTag, $placeholder);
 		});
 	} else {
