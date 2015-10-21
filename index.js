@@ -1,8 +1,6 @@
 import jquery from 'jquery';
 import whenScroll from 'when-scroll';
 
-var $window = $(window);
-
 /**
  * Removes the hidden whtevr element from the DOM, and unwraps the loaded
  * content from the temporary <div> element.
@@ -25,9 +23,9 @@ function removeScriptTag($scriptTag, $placeholder) {
  * @param {jQuery} $scriptTag The whtevr element housing the hidden content
  */
 function loadNow($scriptTag) {
-	var $placeholder = $scriptTag.next('.whtevr-helper');
-	var isNoscript = ($scriptTag.prop('tagName') === 'NOSCRIPT');
-	var $content = isNoscript ? $scriptTag.text() : $scriptTag.html();
+	const $placeholder = $scriptTag.next('.whtevr-helper');
+	const isNoscript = ($scriptTag.prop('tagName') === 'NOSCRIPT');
+	const $content = isNoscript ? $scriptTag.text() : $scriptTag.html();
 	$placeholder.html($.parseHTML($content));
 
 	$scriptTag.trigger('whtevr-loaded', [ $placeholder ]);
@@ -36,11 +34,11 @@ function loadNow($scriptTag) {
 	// element in the triggerFinished function, as we don't want to remove the
 	// element if we have images to load, as the `whtevr-images-loaded` trigger
 	// may not have an element to fire on if it's been removed here.
-	var $images = $placeholder.find('img');
+	const $images = $placeholder.find('img');
 	if ($images.length > 0) {
 		// @todo: Isn't this just the load event?
-		var promises = $images.map(function (i, img) {
-			var promise = $.Deferred();
+		const promises = $images.map(function (i, img) {
+			const promise = $.Deferred();
 			$(img).on('load', () => promise.resolve());
 			return promise;
 		});
@@ -55,14 +53,15 @@ function loadNow($scriptTag) {
 }
 
 $('[type="text/x-whtevr"], .js-whtevr').each(function () {
-	var $this = $(this);
+	const $this = $(this);
+
 	// We create this now because script tags don't have a bounding rect
-	var $placeholder = $('<div class="whtevr-helper" />');
+	const $placeholder = $('<div class="whtevr-helper" />');
 	$placeholder.insertAfter($this);
 
 	// data-load-after to load the element after an interval of time
 	if ($this.data('load-after')) {
-		$window.on('load', function () {
+		$(window).on('load', function () {
 			setTimeout(() => loadNow($this), $this.data('load-after'));
 		});
 	} else {
