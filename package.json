@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/callumacrae/whtevr",
   "dependencies": {
+    "babelify": "^6.4.0",
     "jquery": "^1.11.2",
     "when-scroll": "^0.2.4"
   },

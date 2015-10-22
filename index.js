@@ -1,4 +1,4 @@
-import jquery from 'jquery';
+import $ from 'jquery';
 import whenScroll from 'when-scroll';
 
 /**
