@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha-phantomjs test/test.html",
-    "build": "babel -o build/index.js -m umd -s true index.js",
-    "watch": "babel -o build/index.js -m umd -s true --watch index.js",
+    "build": "babel index.js -o build/index.js -m umd -s",
+    "watch": "babel index.js -o build/index.js -m umd -s --watch",
     "prepublish": "npm run build"
   },
   "repository": {
