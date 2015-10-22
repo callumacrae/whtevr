@@ -51,7 +51,7 @@ describe('whtevr', function () {
 				eventFired = true;
 				$element = $el;
 			});
-			$('[type="text/x-whtevr-experiment"]').whtevrLoad();
+			$('.js-whtevr-experiment').whtevrLoad();
 		});
 
 		it('should not load stuff early', function () {
