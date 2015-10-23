@@ -36,7 +36,6 @@ function loadNow($scriptTag) {
 	// may not have an element to fire on if it's been removed here.
 	const $images = $placeholder.find('img');
 	if ($images.length > 0) {
-		// @todo: Isn't this just the load event?
 		const promises = $images.map(function (i, img) {
 			const promise = $.Deferred();
 			$(img).on('load', () => promise.resolve());
