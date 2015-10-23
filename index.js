@@ -26,7 +26,7 @@ function loadNow($scriptTag) {
 	const $placeholder = $scriptTag.next('.whtevr-helper');
 	const isNoscript = ($scriptTag.prop('tagName') === 'NOSCRIPT');
 	const $content = isNoscript ? $scriptTag.text() : $scriptTag.html();
-	$placeholder.html($.parseHTML($content));
+	$placeholder.html($content);
 
 	$scriptTag.trigger('whtevr-loaded', [ $placeholder ]);
 
