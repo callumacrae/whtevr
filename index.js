@@ -77,6 +77,10 @@ $('[type="text/x-whtevr"], .js-whtevr').each(function () {
  */
 $.fn.whtevrLoad = function () {
 	return this.each(function () {
-		loadNow($(this));
+    var $this = $(this);
+    // We create this now because script tags don't have a bounding rect
+    const $placeholder = $('<div class="whtevr-helper" />');
+    $placeholder.insertAfter($this);
+		loadNow($this);
 	});
 };
