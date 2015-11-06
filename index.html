@@ -51,6 +51,7 @@
 <script type="text/x-whtevr" class="deletewhendone">
 	<p id="test2" class="deletewhendone">this is a test 2</p>
 </script>
+<button class="js-add-new-element">Click me for new element</button>
 
 
 <script src="node_modules/jquery/dist/jquery.js"></script>
@@ -61,6 +62,15 @@
 
 		$('.js-whtevr-evt').whtevrLoad();
 
+	});
+
+	$('.js-add-new-element').on('click', function () {
+		$('<noscript class="js-whtevr"><div class="js-whtevr-injected">This is an injected element</div></noscript>')
+			.insertAfter($(this));
+
+			setTimeout(function () {
+				$('.js-whtevr').whtevrInit();
+			}, 100);
 	});
 
 	$(document).on('whtevr-loaded', '.blahh', function () {

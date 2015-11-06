@@ -95,6 +95,11 @@ describe('whtevr', function () {
 				$element = $el;
 			});
 
+			$('.js-add-new-element').on('click', function () {
+				$('<noscript class="js-whtevr"><div class="js-whtevr-injected deletewhendone">This is an injected element</div></noscript>')
+					.insertAfter($(this));
+			});
+
 			$('.js-image').whtevrLoad();
 
 			$('.js-image').on('whtevr-images-loaded', function (e, $el) {
@@ -146,6 +151,23 @@ describe('whtevr', function () {
 			$element.length.should.equal(1);
 			// Commenting this out because I'm removing the wrapping <div> when
 			//$element.is(':visible').should.be.True;
+		});
+
+		it('should initialise on injected content with whtevrInit fn', function () {
+			$('.js-add-new-element').click();
+			setTimeout(function () {
+				$('.js-whtevr').whtevrInit();
+				setTimeout(function () {
+					$(window).scrollTop(20000);
+				});
+
+				var interval = setInterval(function () {
+					if ($('.js-whtevr-injected').length === 1) {
+						done();
+						clearInterval(interval);
+					}
+				}, 10);
+			}, 10);
 		});
 	});
 });
