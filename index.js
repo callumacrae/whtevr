@@ -68,7 +68,7 @@ $.fn.whtevrInit = function () {
 			}, true);
 		}
 	});
-}
+};
 
 $('[type="text/x-whtevr"], .js-whtevr').whtevrInit();
 
