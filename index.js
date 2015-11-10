@@ -51,24 +51,26 @@ function loadNow($scriptTag) {
 	}
 }
 
-$('[type="text/x-whtevr"], .js-whtevr').each(function () {
-	const $this = $(this);
+$.fn.whtevrInit = function () {
+	return this.each(function () {
+		const $this = $(this);
+		// We create this now because script tags don't have a bounding rect
+		const $placeholder = $('<div class="whtevr-helper" />');
+		$placeholder.insertAfter($this);
+		// data-load-after to load the element after an interval of time
+		if ($this.data('load-after')) {
+			$(window).on('load', function () {
+				setTimeout(() => loadNow($this), $this.data('load-after'));
+			});
+		} else {
+			whenScroll(['within 300px of', $placeholder[0]], function () {
+				loadNow($this);
+			}, true);
+		}
+	});
+};
 
-	// We create this now because script tags don't have a bounding rect
-	const $placeholder = $('<div class="whtevr-helper" />');
-	$placeholder.insertAfter($this);
-
-	// data-load-after to load the element after an interval of time
-	if ($this.data('load-after')) {
-		$(window).on('load', function () {
-			setTimeout(() => loadNow($this), $this.data('load-after'));
-		});
-	} else {
-		whenScroll(['within 300px of', $placeholder[0]], function () {
-			loadNow($this);
-		}, true);
-	}
-});
+$('[type="text/x-whtevr"], .js-whtevr').whtevrInit();
 
 /**
  * jQuery plugin to immediately load the contents of a whtevr element.
