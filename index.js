@@ -56,7 +56,9 @@ $.fn.whtevrInit = function () {
 		const $this = $(this);
 		// We create this now because script tags don't have a bounding rect
 		const $placeholder = $('<div class="whtevr-helper" />');
-		$placeholder.insertAfter($this);
+		$placeholder
+				.css('display', 'inline')
+				.insertAfter($this);
 		// data-load-after to load the element after an interval of time
 		if ($this.data('load-after')) {
 			$(window).on('load', function () {
