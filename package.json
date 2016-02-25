@@ -4,10 +4,7 @@
   "description": "A lazy load library that just doesn't care",
   "main": "index.js",
   "scripts": {
-    "test": "mocha-phantomjs test/test.html",
-    "build": "babel index.js -o build/index.js -m umd -s",
-    "watch": "babel index.js -o build/index.js -m umd -s --watch",
-    "prepublish": "npm run build"
+    "test": "mocha-phantomjs test/test.html"
   },
   "repository": {
     "type": "git",
@@ -26,20 +23,13 @@
   },
   "homepage": "https://github.com/callumacrae/whtevr",
   "dependencies": {
-    "babelify": "^6.4.0",
     "jquery": "^1.11.2",
     "when-scroll": "^0.2.4"
   },
   "devDependencies": {
-    "babel": "^5.8.23",
     "mocha": "^2.2.1",
     "mocha-phantomjs": "^3.6.0",
     "phantomjs": "1.9.7-15",
     "should": "^5.2.0"
-  },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
   }
 }

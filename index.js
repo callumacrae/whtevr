@@ -1,5 +1,18 @@
-import $ from 'jquery';
-import whenScroll from 'when-scroll';
+(function (root, factory) {
+	if (typeof define === 'function' && define.amd) {
+		// AMD. Register as an anonymous module.
+		define(['jquery', 'when-scroll'], factory);
+	} else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
+		// CommonJS
+		factory(exports, require('jquery'), require('when-scroll'));
+	} else {
+		// Browser globals
+		factory(root, root.jQuery, root.whenScroll);
+	}
+}(this, function (exports, $, whenScroll) {
+
+
+'use strict';
 
 /**
  * Removes the hidden whtevr element from the DOM, and unwraps the loaded
@@ -23,9 +36,9 @@ function cleanUp($scriptTag, $placeholder) {
  * @param {jQuery} $scriptTag The whtevr element housing the hidden content
  */
 function loadNow($scriptTag) {
-	const $placeholder = $scriptTag.next('.whtevr-helper');
-	const isNoscript = ($scriptTag.prop('tagName') === 'NOSCRIPT');
-	const $content = isNoscript ? $scriptTag.text() : $scriptTag.html();
+	var $placeholder = $scriptTag.next('.whtevr-helper');
+	var isNoscript = ($scriptTag.prop('tagName') === 'NOSCRIPT');
+	var $content = isNoscript ? $scriptTag.text() : $scriptTag.html();
 	$placeholder.html($content);
 
 	$scriptTag.trigger('whtevr-loaded', [ $placeholder ]);
@@ -34,15 +47,17 @@ function loadNow($scriptTag) {
 	// element in the triggerFinished function, as we don't want to remove the
 	// element if we have images to load, as the `whtevr-images-loaded` trigger
 	// may not have an element to fire on if it's been removed here.
-	const $images = $placeholder.find('img');
+	var $images = $placeholder.find('img');
 	if ($images.length > 0) {
-		const promises = $images.map(function (i, img) {
-			const promise = $.Deferred();
-			$(img).on('load', () => promise.resolve());
+		var promises = $images.map(function (i, img) {
+			var promise = $.Deferred();
+			$(img).on('load', function () {
+				promise.resolve();
+			});
 			return promise;
 		}).toArray();
 
-		$.when(...promises).then(function () {
+		$.when.apply($, promises).then(function () {
 			$scriptTag.trigger('whtevr-images-loaded', [ $placeholder ]);
 			cleanUp($scriptTag, $placeholder);
 		});
@@ -53,16 +68,18 @@ function loadNow($scriptTag) {
 
 $.fn.whtevrInit = function () {
 	return this.each(function () {
-		const $this = $(this);
+		var $this = $(this);
 		// We create this now because script tags don't have a bounding rect
-		const $placeholder = $('<div class="whtevr-helper" />');
+		var $placeholder = $('<div class="whtevr-helper" />');
 		$placeholder
 				.css('display', 'inline')
 				.insertAfter($this);
 		// data-load-after to load the element after an interval of time
 		if ($this.data('load-after')) {
 			$(window).on('load', function () {
-				setTimeout(() => loadNow($this), $this.data('load-after'));
+				setTimeout(function () {
+					loadNow($this);
+				}, $this.data('load-after'));
 			});
 		} else {
 			whenScroll(['within 300px of', $placeholder[0]], function () {
@@ -84,3 +101,7 @@ $.fn.whtevrLoad = function () {
 		loadNow($(this));
 	});
 };
+
+
+
+}));
