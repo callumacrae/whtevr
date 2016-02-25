@@ -15,8 +15,6 @@ It relies on jQuery and another library of mine, [when-scroll].
 $ npm install --save whtevr
 ```
 
-Require `whtevr` if you're using babelify. Require `whtevr/build` if you're not.
-
 ## Usage
 
 Put everything in a noscript tag with the class "js-whtevr":
